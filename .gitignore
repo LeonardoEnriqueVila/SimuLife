@@ -1,0 +1,19 @@
+# Dependencias
+/node_modules
+
+# Archivos de compilación
+/dist
+
+# Archivos de configuración del entorno local
+.env
+/.vscode
+
+# Sistema de archivos de macOS
+.DS_Store
+
+# Archivos de registro
+npm-debug.log
+yarn-error.log
+
+# Directorios de salida del compilador TypeScript
+*.tsbuildinfo

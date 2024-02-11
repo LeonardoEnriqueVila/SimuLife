@@ -1,0 +1,19 @@
+{
+  "name": "tu-proyecto",
+  "version": "1.0.0",
+  "description": "Una breve descripción de tu proyecto",
+  "main": "index.js",
+  "author": "Tu Nombre",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/systemjs": "^6.13.5",
+    "typescript": "^3.8.3" 
+  },
+  "scripts": {
+    "clean": "rmdir /s /q dist",
+    "build": "npm run clean && tsc"
+  }
+}
+
+
+
