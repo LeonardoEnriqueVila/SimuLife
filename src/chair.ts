@@ -9,9 +9,10 @@ export class Chair extends GameObject {
     private tvOffListener: CustomEventHandler; // informe de tele apagada
     isChairInUse: boolean = false;
     linkedTvName: string = EventManager.tvUsed; // al ser comprada debe saber de base si hay una tele en uso
-    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number, 
+    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number,
+        positionX: number, positionY: number, 
         public initialComfortRestoration: number, public comfortRestoration: number, public minComfortRestoration: number) {
-        super(id, name, price, initialPrice, minPrice, objectIndex); 
+        super(id, name, price, initialPrice, minPrice, objectIndex, positionX, positionY); 
         this.listener = (data: any) => { // evento generico de objeto en uso
             console.log(`Evento recibido por ${this.name}`);
             const objectInUse = data as GameObject;

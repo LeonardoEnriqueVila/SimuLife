@@ -14,7 +14,15 @@ class UIManager {
 
         this.eliminateDivListener = (data: any) => {
             console.log("div id to remove: " + data);
-            document.getElementById(data)!.remove();
+            let div = document.getElementById(data);
+            if (div!.dataset.isMap !== 'true') { // si es un div del inventario, se elimina (puede ser porque se coloco en mapa o se vendio)
+                div!.remove();
+            }
+            else if (div!.dataset.isMap === 'true') { // en este caso, es porque se esta vendiendo un item en el mapa
+                div!.dataset.hasObject = 'false'; // esto permite saber a la UI que este div no tiene mas un item
+                div!.textContent = ""; // de manera provisioria volver a settear el texto en vacio para representar visualmente
+                // que no hay item ahi
+            }
         };
 
         this.subscribeToEvents();
@@ -37,8 +45,18 @@ class UIManager {
         document.getElementById(divId)!.textContent = text;
     }
 
+    static updateTextInnerHTML(divId: string, textWithHtmlContent: string) {
+        const element = document.getElementById(divId);
+        element!.innerHTML = textWithHtmlContent; 
+    }
+    
+
     static showAlert(text: string) {
         alert(text);
+    }
+
+    static addContextMenu(divInMap: HTMLDivElement) {
+        addContextMenuEventToInventoryItem(divInMap);
     }
     
 }
@@ -67,6 +85,7 @@ function addEventToDivMarketItems() { // añadir evento al div predeterminado de
     });
 }
 
+// crea un div en el inventariom (interfaz)
 function addDivToInterface(objectName: string, objectIndex: string) { // añade div de manera dinamica cuando se compra un objeto
     console.log("in divToInterface: " + objectName + objectIndex);
     // Intentar obtener el elemento 'div' que contendrá los objetos.
@@ -75,14 +94,15 @@ function addDivToInterface(objectName: string, objectIndex: string) { // añade 
     const newObjectDiv = document.createElement('div');
     // Asignar un identificador al 'div' basado en propiedad id del objeto
     //newObjectDiv.id = object.objectIndex + object.name; -> id
-    newObjectDiv.id = objectIndex;
+    newObjectDiv.id = objectName;
     // Establecer el contenido de texto del 'div' como el nombre del objeto.
     newObjectDiv.textContent = objectName;
     // Añadir el nuevo 'div' como un hijo de 'objectsDiv'
     objectsDiv!.appendChild(newObjectDiv);
     // devolver el div
-    newObjectDiv.addEventListener('click', () => { // AQUI MANDA MENSAJE AL MARKET, PARA AÑADIR LOGICA
-        EventManager.emit("logic", objectIndex);
+    newObjectDiv.addEventListener('click', () => { // AQUI MANDA MENSAJE AL MARKET, PARA AÑADIR LOGICA {OBSOLETO}
+        //EventManager.emit("logic", objectIndex);
+        EventManager.emit("selectInventoryItem", objectIndex); // manda el indice del objeto al market para saber de que objeto se trata
     });
     addContextMenuEventToInventoryItem(newObjectDiv); // manejar el tema del contextMenu
 }
@@ -124,6 +144,15 @@ function addContextMenuEventToInventoryItem(newObjectDiv: HTMLDivElement) {
     });
 }
 
+function addContextMenuEventToMapItem(divInMap: HTMLDivElement) {
+    divInMap.addEventListener('contextmenu', (event) => {
+        if (divInMap.dataset.hasObject === 'true') { // asegurarse de que el menu se muestra solo si la casilla tiene un objeto
+            event.preventDefault(); // Previene el menú contextual predeterminado del navegador
+            showCustomContextMenu(event.pageX, event.pageY, divInMap); // las coordenadas x e y son donde se hizo el click derecho
+        }
+    });
+}
+
 function showCustomContextMenu(x: number, y: number, newObjectDiv: HTMLDivElement) {
     // Eliminar el menú contextual actual si existe
     console.log("x y on showCustomContextMenu: " + x + y);
@@ -137,7 +166,8 @@ function showCustomContextMenu(x: number, y: number, newObjectDiv: HTMLDivElemen
     sellOption.textContent = 'Sell';
     sellOption.addEventListener('click', () => { // evento de click para "sell"
         if (confirmSell(newObjectDiv.textContent!)) {
-            EventManager.emit("sell", newObjectDiv.id); // evento que se envia al inventario para efectuar la venta
+            console.log("this should be sent to sell: " + newObjectDiv.id);
+            EventManager.emit("sell", newObjectDiv.id); // envio al inventario el nombre del objeto
         }
     });
     let infoOption = document.createElement('div');

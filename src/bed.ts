@@ -8,11 +8,12 @@ export class Bed extends GameObject {
     private listener: CustomEventHandler; // Guardar la referencia al listener
     isBedInUse: boolean = false; // Inicialmente la cama no está en uso
     // Constructor de 'Bed', que también necesita inicializar 'GameObject'
-    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number, 
+    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number,
+        positionX: number, positionY: number, 
         public initialEnergyRestoration: number, public energyRestoration: number, public minEnergyRestoration: number,
         public initialComfortRestoration: number, public comfortRestoration: number, public minComfortRestoration: number) {
         // minEnergyResortation: sirve para saber el valor minimo de bonus (80% de reduccion)
-        super(id, name, price, initialPrice, minPrice, objectIndex); // Llamar al constructor de la clase base -> Inicializa la parte de 'GameObject' de esta instancia
+        super(id, name, price, initialPrice, minPrice, objectIndex, positionX, positionY); // Llamar al constructor de la clase base -> Inicializa la parte de 'GameObject' de esta instancia
         this.listener = (data: any) => {
             const objectInUse = data as GameObject;
             if (this !== objectInUse && this.isBedInUse) {

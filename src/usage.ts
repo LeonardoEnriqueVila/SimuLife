@@ -11,9 +11,10 @@ export class Usage {
     constructor() {
         this.infoListener = (data: any) => { // el objetivo del listener es proveer informacion del item a la interfaz
             let item: null | [GameObject, number];
-            console.log("recive array in ui: " + data[0] + data[1]);
-            item = getItem(data[0]);
-            this.getObjectInfo(item[0], data[1]);
+            console.log("Info listener usage recives: " + data[0] + data[1]); // recibe nombre del item y id del infoDiv
+            let lastCharacter: string = data[0][data[0].length - 1]; // obtiene el objectIndex del item
+            item = getItem(lastCharacter); // obtiene el item
+            this.getObjectInfo(item[0], data[1]); // busca la informacion del item
             item = null;
         };
 
@@ -154,7 +155,7 @@ function tvMalfunction(devaluation: number): boolean {
 function getBedInfo(item: Bed, infoDivId: string) {
     let priceReduction = item.initialPrice - item.price;
     priceReduction *= 100 / item.initialPrice; // calcular devaluacion
-    UIManager.updateText(infoDivId, `Price: $${item.price.toFixed(3)}<br>Energy Bonus: 
+    UIManager.updateTextInnerHTML(infoDivId, `Price: $${item.price.toFixed(3)}<br>Energy Bonus: 
     ${item.energyRestoration.toFixed(3)}<br>Comfort Bonus: 
     ${item.comfortRestoration.toFixed(3)}<br>Devaluation: ${priceReduction.toFixed(3)}%`); 
 }
@@ -162,7 +163,7 @@ function getBedInfo(item: Bed, infoDivId: string) {
 function getChairInfo(item: Chair, infoDivId: string) {
     let priceReduction = item.initialPrice - item.price;
     priceReduction *= 100 / item.initialPrice;
-    UIManager.updateText(infoDivId, `Price: $${item.price.toFixed(3)}<br>Comfort Bonus: 
+    UIManager.updateTextInnerHTML(infoDivId, `Price: $${item.price.toFixed(3)}<br>Comfort Bonus: 
     ${item.comfortRestoration.toFixed(3)}<br>Devaluation: ${priceReduction.toFixed(3)}%`);
 }
 
@@ -170,7 +171,7 @@ function getTelevisionInfo(item: Television, infoDivId: string) {
     let priceReduction = item.initialPrice - item.price;
     priceReduction *= 100 / item.initialPrice;
     let malfuctionChances = calculateMalfunctionChances(priceReduction);
-    UIManager.updateText(infoDivId, `Price: $${item.price.toFixed(3)}<br>Power: 
+    UIManager.updateTextInnerHTML(infoDivId, `Price: $${item.price.toFixed(3)}<br>Power: 
     ${item.power.toFixed(3)}<br>Malfunction Chances: 
     ${malfuctionChances.toFixed(3)}%<br>Devaluation: ${priceReduction.toFixed(3)}%`)
 }

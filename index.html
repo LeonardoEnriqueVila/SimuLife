@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/system.min.js"
         integrity="sha256-15j2fw0zp8UuYXmubFHW7ScK/xr5NhxkxmJcp7T3Lrc=" crossorigin="anonymous"></script>
     <script src="./dist/resolve.js"></script>
+    <link rel="stylesheet" href="cssFiles/LandPlot.css">
 </head>
 <body>
     <!-- La etiqueta <div> se utiliza para agrupar contenido y es aquí donde se mostrarán las necesidades del personaje. -->
@@ -48,12 +49,18 @@
             </div>
             <!-- Aquí puedes añadir más categorías en el futuro -->
     </div>
+    <div id="landPlot" class="land-plot">
+        <!-- Las casillas se añadirán dinámicamente o puedes ponerlas aquí manualmente para pruebas -->
+    </div>
+    
 
     <script>
         System.import('./dist/eventManager.js');
+        System.import('./dist/gameObject.js');
+        System.import('./dist/Tile.js');
+        System.import('./dist/LandPlotUI.js');
         System.import('./dist/UIManager.js');
         System.import('./dist/need.js');
-        System.import('./dist/gameObject.js');
         System.import('./dist/bed.js');
         System.import('./dist/chair.js');
         System.import('./dist/television.js');

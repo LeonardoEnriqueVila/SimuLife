@@ -11,9 +11,10 @@ export class Television extends GameObject {
     private listener: CustomEventHandler; // Guardar la referencia al listener
     isTelevisionInUse: boolean = false;
     isTelevisionWorking: boolean = true;
-    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number, 
+    constructor(id: string, name: string, price: number, initialPrice: number, minPrice: number, objectIndex: number,
+        positionX: number, positionY: number, 
         public fun: number, public initialPower: number, public power: number, public minPower: number) {
-        super(id, name, price, initialPrice, minPrice, objectIndex); // Llamar al constructor de la clase base -> Inicializa la parte de 'GameObject' de esta instancia
+        super(id, name, price, initialPrice, minPrice, objectIndex, positionX, positionY); // Llamar al constructor de la clase base -> Inicializa la parte de 'GameObject' de esta instancia
         this.listener = (data: any) => {
             console.log(`Evento recibido por ${this.name}`);
             const objectInUse = data as GameObject;

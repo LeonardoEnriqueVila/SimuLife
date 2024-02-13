@@ -1,0 +1,15 @@
+.land-plot {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 columnas */
+    grid-template-rows: repeat(10, 1fr); /* 10 filas */
+    gap: 2px; /* Espacio entre casillas */
+    width: 500px; /* Tamaño del mapa */
+    height: 500px; /* Igual altura y anchura para mantener las casillas cuadradas */
+    border: 1px solid #ccc; /* Borde alrededor del mapa */
+}
+
+.tile {
+    border: 1px solid #ccc; /* Estilo de borde de las casillas */
+    background-color: beige; /* Color de fondo de las casillas, ajustado según tu preferencia original */
+    cursor: pointer; /* Cambiar el cursor para indicar interactividad */
+}
