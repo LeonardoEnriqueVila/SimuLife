@@ -13,3 +13,8 @@
     background-color: beige; /* Color de fondo de las casillas, ajustado según tu preferencia original */
     cursor: pointer; /* Cambiar el cursor para indicar interactividad */
 }
+
+#map {
+    margin: 0 auto; /* Añade esto para centrar #map horizontalmente */
+    width: fit-content; /* O un valor específico si prefieres una anchura definida */
+}

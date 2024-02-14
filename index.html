@@ -7,50 +7,83 @@
         integrity="sha256-15j2fw0zp8UuYXmubFHW7ScK/xr5NhxkxmJcp7T3Lrc=" crossorigin="anonymous"></script>
     <script src="./dist/resolve.js"></script>
     <link rel="stylesheet" href="cssFiles/LandPlot.css">
+    <link rel="stylesheet" href="cssFiles/clock.css">
+    <link rel="stylesheet" href="cssFiles/market&extras.css">
 </head>
 <body>
-    <!-- La etiqueta <div> se utiliza para agrupar contenido y es aquí donde se mostrarán las necesidades del personaje. -->
-    <div id="needs">
-        <!-- Cada necesidad (hambre y energía) se muestra en su propia línea. El valor se coloca dentro de un <span> para poder ser actualizado dinámicamente. -->
-        <div>Hunger: <span id="hunger">100</span></div> <!-- El valor inicial de 'hambre' se establece en 100. -->
-        <div>Energy: <span id="energy">100</span></div> 
-        <div>Comfort: <span id="comfort">100</span></div>
-        <div>Fun: <span id="fun">100</span></div> 
-    </div>
-    <br><br> <!-- Dos saltos de línea para crear espacio -->
-    <div id="actions">
-        <div>Action: <span id="action">Thinking</span></div> 
-    </div>
-    <br><br> <!-- Dos saltos de línea para crear espacio -->
-    <div id="moneyDiv">
-        <div>Money: <span id="money">25</span></div> 
-    </div>
-    <br><br> <!-- Dos saltos de línea para crear espacio -->
-    <div id="inventory">
-        <div><span id="objectsTitle">Inventory:</span></div> 
-    </div>
+    <header>
+        <div class="mainBox">
+            <div class="timeBox">
+                <ul class="clockAndSpeedBox">
+                    <li><span id="clock">0</span></li>
+                    <li><span id="speed">Normal Speed</span></li>
+                </ul>
+                <ul class="speedButtons">
+                    <li id="pause">||</li>
+                    <li id="normalSpeed">></li>
+                    <li id="fastSpeed">>></li>
+                    <li id="veryFastSpeed">>>></li>
+                    <li id="lightSpeed">>>></li>
+                </ul> 
+            </div>
 
-    <br><br> <!-- Dos saltos de línea para crear espacio -->
-    <div id="market">
-        <div id="openMarket">Open Market</div>        
-        <div id="categories" style="display: none;">
-            <div id="bedsCategory">Beds</div>
-            <div id="beds" style="display: none;">
-                <div id="sleepingBag">Sleeping Bag - $25</div>
-                <!-- Aquí puedes añadir más camas en el futuro -->
+            <ul class="needs">
+                <li>Hunger: <span id="hunger">100</span></li>
+                <li>Energy: <span id="energy">100</span></li> 
+                <li>Comfort: <span id="comfort">100</span></li>
+                <li>Fun: <span id="fun">100</span></li> 
+            </ul>
+
+            <div id="marketContainer">
+                <div id="openMarket">Open Market</div>
+                <div id="market" style="display: none;">
+                    <div id="categories" style="display: none;">
+                        <div id="bedsCategory">Beds</div>
+                        <div id="beds" style="display: none;">
+                            <div id="sleepingBag">Sleeping Bag - $25</div>
+                            <!-- Más camas aquí -->
+                        </div>
+                        <div id="chairsCategory">Chairs</div>
+                        <div id="chairs" style="display: none;">
+                            <div id="plasticStool">Plastic Stool - $15</div>
+                            <!-- Más sillas aquí -->
+                        </div>
+                        <div id="televisionsCategory">Televisions</div>
+                        <div id="televisions" style="display: none;">
+                            <div id="basicView">BasicView: Black&White TV - $55</div>
+                            <!-- Más televisiones aquí -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="chairsCategory">Chairs</div>
-            <div id="chairs" style="display: none;">
-                <div id="plasticStool">Plastic Stool - $15</div>
+
+            <div id="extrasContainer">
+                <div id="actions">
+                    <div>Action: <span id="action">Thinking</span></div> 
+                </div>
+                    
+                <div id="moneyDiv">
+                    <div>Money: <span id="money">25</span></div> 
+                </div>
+                    
+                <div id="inventory">
+                    <div>Inventory: <span id="objectsTitle"></span></div> 
+                </div>
             </div>
-            <div id="televisionsCategory">Televisions</div>
-            <div id="televisions" style="display: none;">
-                <div id="basicView">BasicView: Black&White TV - $55</div>
-            </div>
-            <!-- Aquí puedes añadir más categorías en el futuro -->
-    </div>
-    <div id="landPlot" class="land-plot">
+        
+    </header>
+    
+    
+    <!-- La etiqueta <div> se utiliza para agrupar contenido y es aquí donde se mostrarán las necesidades del personaje. -->
+    
+    
+    
+
+    
+    <div id="map">
+        <div id="landPlot" class="land-plot">
         <!-- Las casillas se añadirán dinámicamente o puedes ponerlas aquí manualmente para pruebas -->
+        </div>
     </div>
     
 
@@ -66,6 +99,8 @@
         System.import('./dist/television.js');
         System.import('./dist/money.js');
         System.import('./dist/needsManager.js');
+        System.import('./dist/GameClock.js');
+        System.import('./dist/GameClockUI.js');
         System.import('./dist/usage.js');
         System.import('./dist/inventory.js');
         System.import('./dist/NewMarket.js');

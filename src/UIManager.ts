@@ -95,46 +95,67 @@ function addDivToInterface(objectName: string, objectIndex: string) { // añade 
     // Asignar un identificador al 'div' basado en propiedad id del objeto
     //newObjectDiv.id = object.objectIndex + object.name; -> id
     newObjectDiv.id = objectName;
+    // Asigna la clase a este nuevo elemento -> esto permite manejarlo desde css
+    newObjectDiv.classList.add('inventory-item'); 
     // Establecer el contenido de texto del 'div' como el nombre del objeto.
     newObjectDiv.textContent = objectName;
     // Añadir el nuevo 'div' como un hijo de 'objectsDiv'
     objectsDiv!.appendChild(newObjectDiv);
     // devolver el div
-    newObjectDiv.addEventListener('click', () => { // AQUI MANDA MENSAJE AL MARKET, PARA AÑADIR LOGICA {OBSOLETO}
+    newObjectDiv.addEventListener('click', () => { 
         //EventManager.emit("logic", objectIndex);
         EventManager.emit("selectInventoryItem", objectIndex); // manda el indice del objeto al market para saber de que objeto se trata
     });
     addContextMenuEventToInventoryItem(newObjectDiv); // manejar el tema del contextMenu
 }
 
-function marketVisibility() { // setteo predeterminado de la visibilidad de los elementos predeterminados del mercado
+function marketVisibility() {
     document.getElementById('openMarket')!.addEventListener('click', () => {
-        // Muestra u oculta las categorías
+        // Muestra u oculta las categorías del mercado
+        toggleVisibility('market');
         toggleVisibility('categories');
+        // Asegura que todas las subcategorías estén ocultas cuando se abra el mercado
+        resetCategories();
     });
+
+    // Event listeners para las categorías individuales
     document.getElementById('bedsCategory')!.addEventListener('click', () => {
-        // Muestra u oculta la lista de camas
         toggleVisibility('beds');
     });
     document.getElementById('chairsCategory')!.addEventListener('click', () => {
-        // Muestra u oculta la lista de camas
         toggleVisibility('chairs');
     });
     document.getElementById('televisionsCategory')!.addEventListener('click', () => {
-        // Muestra u oculta la lista de camas
         toggleVisibility('televisions');
     });
 }
 
-// Seria conveniente que al abrir y cerrar el market, cierre las categorias que quedaron abiertas, para mas prolijidad visual
+// Función para ocultar todas las subcategorías
+function resetCategories() {
+    const categoriesToReset = ['beds', 'chairs', 'televisions']; // Agregar mas cuando cree nuevas
+    categoriesToReset.forEach(categoryId => { // por cada categoria de "categoriesToReset"
+        const categoryElement = document.getElementById(categoryId);
+        if (categoryElement) {
+            categoryElement.style.display = 'none'; // las muestra en "none", es decir las oculta
+        }
+    });
+}
+
+// Función para alternar la visibilidad
 function toggleVisibility(elementId: string) {
     const element = document.getElementById(elementId);
-    if (element!.style.display === 'none') {
-        element!.style.display = 'block'; // Mostrar
-    } else {
-        element!.style.display = 'none'; // Ocultar
+    
+    if (element) {
+        console.log(element!.style.display);
+        if (element.style.display === 'none') {
+            element.style.display = 'block'; // Mostrar
+        } else {
+            element.style.display = 'none'; // Ocultar y resetear las categorías
+            resetCategories(); // Esto asegurará que las subcategorías se oculten cuando se cierre el mercado
+        }
     }
 }
+
 
 // añadir evento de click derecho en el item del inventario
 function addContextMenuEventToInventoryItem(newObjectDiv: HTMLDivElement) {

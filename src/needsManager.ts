@@ -1,5 +1,10 @@
 import { standardHungerDecrease, standardEnergyDecrease, standardComfortDecrease, standardFunDecrease } from './need';
 
+// ahora las funciones que se le pasan a "activeEffecs" mediante "updateEffect" no responden a un intervalo directo generado
+// directamente en needsManager, sino que los metodos "HungerInterva()", etc, se actualizan en el clock con updateNeeds
+// el cual se llama cada segundo y se multiplica segun la velocidad del juego, lo cual implica que el intervalo del reloj,
+// maneja las necesidades, implicando que solo hay un intervalo centralizado. 
+
 class NeedsManager {
     private activeEffects: {
         hunger: () => void,
@@ -20,42 +25,37 @@ class NeedsManager {
         this.activeEffects[needKey] = newEffectFunction;
     }
     // Métodos para iniciar los intervalos que llaman a los efectos activos
-    startHungerInterval() {
-        setInterval(() => {
-            if (this.activeEffects.hunger) {
-                this.activeEffects.hunger();
-            }
-        }, 1000);
+    HungerInterval() {
+        if (this.activeEffects.hunger) {
+            this.activeEffects.hunger();
+        }
+        
     }
-    startEnergyInterval() {
-        setInterval(() => {
-            if (this.activeEffects.energy) {
-                this.activeEffects.energy();
-            }
-        }, 1000);
+    EnergyInterval() {
+        if (this.activeEffects.energy) {
+            this.activeEffects.energy();
+        }
     }
-    startComfortInterval() {
-        setInterval(() => {
-            if (this.activeEffects.comfort) {
-                this.activeEffects.comfort();
-            }
-        }, 1000);
+    
+    ComfortInterval() {
+        if (this.activeEffects.comfort) {
+            this.activeEffects.comfort();
+        }
     }
-    startFunInterval() {
-        setInterval(() => {
-            if (this.activeEffects.fun) {
-                this.activeEffects.fun();
-            }
-        }, 1000);
+
+    FunInterval() {
+        if (this.activeEffects.fun) {
+            this.activeEffects.fun();
+        }
     }
 }
 
 export const needsManager = new NeedsManager();
 
-needsManager.startHungerInterval();
+/*needsManager.startHungerInterval();
 needsManager.startEnergyInterval();
 needsManager.startComfortInterval();
-needsManager.startFunInterval();
+needsManager.startFunInterval();*/
 
 
 

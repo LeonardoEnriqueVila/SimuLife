@@ -1,0 +1,68 @@
+#categories {
+    margin-top: -6px;
+}
+
+#categories > div {
+    padding: 1px; /* Espacio vertical entre categorías */
+    border: 2px solid #5499C7; /* Borde */
+    margin-top: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    background-color: #5499C7; /* Color de fondo para cada caja */
+    border: 2px solid #7FB3D5; /* Borde para cada caja */
+    text-align: center;
+}
+
+#categories div:hover {
+    background-color: #7FB3D5; /* Color de fondo al hacer hover */
+    color: #FFFFFF; /* Color de texto al hacer hover */
+}
+
+#extrasContainer {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna */
+    background-color: #AED6F1; /* Color de fondo */
+    border: 5px solid #5499C7; /* Borde */
+    padding: 10px;
+    margin-top: 10px; /* Espacio arriba del contenedor */
+    height: 200px; /* Altura del contenedor */
+    justify-content: center;
+}
+
+#extrasContainer > div {
+    background-color: #5499C7; /* Color de fondo para cada caja */
+    border: 2px solid #7FB3D5; /* Borde para cada caja */
+    padding: 10px; /* Espacio interior para cada caja */
+    margin: 5px 0; /* Espacio entre cajas */
+    color: #FFFFFF; /* Color del texto */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    cursor: default;
+    text-align: center;
+}
+
+#extrasContainer div span {
+    font-weight: bold; /* Hace que el texto dentro de <span> sea más grueso */
+}
+
+.inventory-item {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #5499C7; /* Azul claro */
+    background-color: #7FB3D5; /* Azul más oscuro */
+    cursor: pointer;
+}
+
+.inventory-item:hover {
+    background-color: #AED6F1; /* Un azul aún más claro para el efecto hover */
+}
+
+div #market {
+    cursor: default;
+}
+
+div #categories {
+    cursor: pointer;
+}
+
+#beds, #chairs, #televisions {
+    background-color: aqua;
+}

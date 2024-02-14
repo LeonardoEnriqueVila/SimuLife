@@ -50,19 +50,19 @@ export class Television extends GameObject {
             EventManager.emit('tvOn', this);
             needsManager.updateEffect("fun", this.televisionInterval.bind(this))
         } else {
-            alert(this.name + " Is broken!");
+            UIManager.showAlert(this.name + " is broken!");
         }      
     }
     televisionInterval() {
         console.log("using: " + this.name);
         fun.value += this.fun;
         if (usage.reduceProperty(this) === false) { // desgastar la tele, y si su funcion de desgaste devuelve falso -> se rompio tv
+            UIManager.showAlert(this.name + " is broken!");
             this.stopWatching(); // efectuar detencion de uso de objeto
             this.isTelevisionWorking = false; // evitar que se la use
             this.price = 0; // el item pierde valor al romperse (IDEA: al repararse, recuperará su precio minimo)
             // indicar broken en texto del div (el nombre del item no se modifica)
-            UIManager.updateText(this.objectIndex + this.name, this.name + " (BROKEN)");
-            alert(this.name + " Is broken!");
+            UIManager.updateText(this.name, this.name + " (BROKEN)");
         }  
         if (fun.value > 100) {
             fun.value = 100; // Asegurar que no exceda los 100

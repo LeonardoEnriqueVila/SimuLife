@@ -1,0 +1,89 @@
+.mainBox {
+    display: flex; /* Cambiado a flex para alinear elementos horizontalmente */
+    justify-content: space-around; /* Distribuye el espacio alrededor de los elementos internos */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    background-color: #7FB3D5; /* Color de fondo */
+    border: 10px solid #5499C7; /* Borde */
+    color: #FFFFFF; /* Color del texto */
+    padding: 20px; /* Padding alrededor de los elementos internos */
+    margin: auto; /* Centrar mainBox en el contenedor padre */
+    /* D6EAF8 pastel azulado*/
+}
+
+.timeBox, .clockAndSpeedBox, .needs, #marketContainer {
+    display: flex; /* Aplica un layout flexible también a estos contenedores */
+    flex-direction: column; /* Organiza los elementos internos verticalmente */
+    background-color: #AED6F1; /* Color de fondo */
+    border: 5px solid #5499C7; /* Borde */
+    padding: 10px; /* Padding interno */
+    margin: 5px; /* Margen entre los contenedores */
+    list-style-type: none;
+    cursor: default;
+    height: 200px; /* Altura del contenedor */
+    width: 150px; /* Ancho del contenedor */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+}
+
+.timeBox {
+    width: 200px; /* Ancho del contenedor */ 
+    justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+.speedButtons {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    list-style-type: none; /* Remueve los puntos de la lista */
+    padding: 0;
+    align-items: center; /* Centra horizontalmente */
+}
+
+.speedButtons li, #marketContainer > div {
+    background-color: #5499C7; /* Color de fondo para cada caja */
+    border: 2px solid #7FB3D5; /* Borde para cada caja */
+    padding: 10px; /* Espacio interior para cada caja */
+    margin: 5px 0; /* Espacio entre cajas */
+    color: #FFFFFF; /* Color del texto */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    cursor: pointer;
+}
+
+.speedButtons li:hover, #openMarket:hover {
+    background-color: #7FB3D5; /* Color de fondo al hacer hover */
+    color: #FFFFFF; /* Color de texto al hacer hover */
+}
+
+.needs li {
+    background-color: #5499C7; /* Color de fondo para cada caja */
+    border: 2px solid #7FB3D5; /* Borde para cada caja */
+    padding: 10px; /* Espacio interior para cada caja */
+    margin: 5px 0; /* Espacio entre cajas */
+    color: #FFFFFF; /* Color del texto */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    text-align: center;
+    height: 200px;
+    width: 130px;
+}
+
+.clockAndSpeedBox li {
+    background-color: #5499C7; /* Color de fondo para cada caja */
+    border: 2px solid #7FB3D5; /* Borde para cada caja */
+    padding: 10px; /* Espacio interior para cada caja */
+    margin: 5px 0; /* Espacio entre cajas */
+    color: #FFFFFF; /* Color del texto */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    text-align: center;
+}
+
+.clockAndSpeedBox {
+    border: 0px;
+}
+
+
+
+
+
+
+
+
+
